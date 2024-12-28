@@ -1,5 +1,5 @@
 # Rezervare-Birou-si-loc-de-parcare
-![.](https://img.shields.io/badge/C%20#-884DA7)
+![](https://img.shields.io/badge/C#-FFDD33)
 
 Aplicația trebuie să permită unui angajat: 
 - Să vizualizeze starea locurilor la birou și a locurilor de parcare.
