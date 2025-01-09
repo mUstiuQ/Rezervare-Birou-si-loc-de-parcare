@@ -13,7 +13,22 @@
         Nume = nume;
         EsteRezervat = false;
     }
-    
+
+    public bool Rezervat()
+    {
+        if (!EsteRezervat)
+        {
+            EsteRezervat = true;
+            return true;
+        }
+        return false;
+        
+    }
+
+    public void Elibereaza()
+    {
+        EsteRezervat = false;
+    }
 
     public override string ToString()
     {
