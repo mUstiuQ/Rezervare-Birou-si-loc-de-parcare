@@ -28,5 +28,3 @@
     
 }
 
-
-// sa vedem daca i corect push ul
