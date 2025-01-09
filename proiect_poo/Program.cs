@@ -6,7 +6,7 @@ using proiect_poo;
 
 class Program
 {
-    static void Main(string[] args)
+     static void Main(string[] args)
     {
         // Creare locuri
         var sistemRezervare = new SistemRezervare();
@@ -28,6 +28,14 @@ class Program
         var hartaParcare = new HartaLocuri(10, 5); // 10 locuri, 5 pe linie
         var hartaCoworking = new HartaLocuri(10, 5);
 
+        var parcarePublica = new ParcarePublica();
+        parcarePublica.AdaugaLoc(new Loc(3, "Parcare", "Parcare A1"));
+        parcarePublica.AdaugaLoc(new Loc(4, "Parcare", "Parcare A2")); 
+        
+        var coworkingSpace = new CoworkingSpace(); 
+        coworkingSpace.AdaugaLoc(new Loc(1, "Birou", "Birou 1")); 
+        coworkingSpace.AdaugaLoc(new Loc(2, "Birou", "Birou 2"));
+
         // Menținerea unui meniu pentru utilizatori
         while (true)
         {
@@ -47,7 +55,7 @@ class Program
                 switch (alegere)
                 {
                     case "1":
-                        Menu.AngajatActions(sistemRezervare, angajat1);
+                        Menu.AngajatActions(sistemRezervare, angajat1); // aici se poate inlocuii angajat1 cu angajat2 
                         break;
                     case "2":
                         Menu.ManagerActions(manager);
@@ -59,7 +67,7 @@ class Program
                         Menu.ParcarePublicaActions(new ParcarePublica(), hartaParcare, angajat1);
                         break;
                     case "5":
-                        Menu.CoworkingSpaceActions(new CoworkingSpace(), hartaCoworking, angajat1);
+                        Menu.CoworkingSpaceActions(new CoworkingSpace(), hartaCoworking, angajat2);
                         break;
                     case "6":
                         return;

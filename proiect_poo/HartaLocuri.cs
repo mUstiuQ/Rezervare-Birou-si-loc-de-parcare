@@ -14,6 +14,11 @@
         }
     }
 
+    public int GetNrColoane()
+    {
+        return hartaLocuri.GetLength(1);
+    }
+
     public void RezervaLoc(int linie, int coloana)
     {
         hartaLocuri[linie, coloana] = 'X'; // Loc rezervat

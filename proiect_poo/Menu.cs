@@ -24,7 +24,7 @@
             case "2":
                 Console.Write("Introduceti ID-ul locului pe care doriti sa-l rezervati: ");
                 var idLoc = int.Parse(Console.ReadLine());
-                parcare.RezervaLocCuTaxa(idLoc, angajat);
+                parcare.RezervaLocCuTaxa(idLoc, angajat, hartaLocuri);
                 Console.WriteLine("Apasa orice tasta pentru a continua...");
                 Console.ReadKey();
                 break;
