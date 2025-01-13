@@ -1,48 +1,72 @@
-﻿public class ParcarePublica : SistemRezervare
+﻿namespace proiect_poo
 {
-   // public decimal TaxaParcare { get; set; }
 
-    public bool RezervaLocCuTaxa(int idLoc, Angajat angajat, HartaLocuri hartaLocuri)
+
+    public class ParcarePublica : SistemRezervare
     {
-        var loc = Locuri.FirstOrDefault(l => l.Id == idLoc && l.Tip == "Parcare");
-        if (loc != null && !loc.EsteRezervat) 
-        {
-            loc.EsteRezervat = true;
-            angajat.AddRezervare(loc);
-            Console.WriteLine($"Locul {loc.Nume} a fost rezervat. Taxa de parcare este {loc.Taxa} lei.");
-            //actualizeaza harta locurilor
-            
-           // var loc = Locuri.FirstOrDefault(l => l.Id == idLoc);
+        // Proprietatea TaxaParcare este comentată, probabil nu este necesară sau nu a fost implementată încă.
+        // public decimal TaxaParcare { get; set; }
 
-           int linie = (idLoc - 1) / hartaLocuri.GetNrColoane();
-           int coloana = (idLoc - 1) % hartaLocuri.GetNrColoane();
-           hartaLocuri.RezervaLoc(linie, coloana);
-            return true;
+        // Metoda RezervaLocCuTaxa rezerva un loc de parcare cu taxa pentru un angajat.
+        public bool RezervaLocCuTaxa(int idLoc, Angajat angajat, HartaLocuri hartaLocuri)
+        {
+            // Căutăm locul de parcare cu ID-ul specificat și care nu este deja rezervat.
+            var loc = Locuri.FirstOrDefault(l => l.Id == idLoc && l.Tip == "Parcare");
+
+            // Dacă locul este disponibil pentru rezervare
+            if (loc != null && !loc.EsteRezervat)
+            {
+                // Se marchează locul ca rezervat
+                loc.EsteRezervat = true;
+
+                // Se adaugă rezervarea la angajat
+                angajat.AddRezervare(loc);
+
+                // Se afișează un mesaj pentru confirmarea rezervării
+                Console.WriteLine($"Locul {loc.Nume} a fost rezervat. Taxa de parcare este {loc.Taxa} lei.");
+
+                // Actualizează harta locurilor pentru a reflecta rezervarea
+                // Calculăm linia și coloana în harta locațiilor pentru a marca locul ca rezervat
+                int linie = (idLoc - 1) / hartaLocuri.GetNrColoane(); // Linia se calculează pe baza ID-ului locului
+                int coloana = (idLoc - 1) % hartaLocuri.GetNrColoane(); // Coloana se calculează pe baza ID-ului locului
+
+                // Se rezervă efectiv locul în harta locațiilor
+                hartaLocuri.RezervaLoc(linie, coloana);
+                return true; // Rezervarea a fost realizată cu succes
+            }
+
+            // Dacă locul nu este disponibil, afișăm un mesaj corespunzător
+            Console.WriteLine($"Locul {idLoc} nu este disponibil pentru rezervare.");
+            return false; // Rezervarea nu a fost realizată
         }
 
-        Console.WriteLine($"Locul {idLoc} nu este disponibil pentru rezervare.");
-        return false;
-    }
-    
-    
-    // public bool RezervaLocCoworking(int idLoc, Angajat angajat, HartaLocuri hartaLocuri)
-    // {
-       //  if (RezervaLoc(idLoc, angajat))
-       // {
-         //   var loc = Locuri.FirstOrDefault(l => l.Id == idLoc); 
-           // if (loc != null) 
-            // {
-               // int linie = (idLoc - 1) / hartaLocuri.GetNrColoane(); 
-                // int coloana = (idLoc - 1) % hartaLocuri.GetNrColoane(); hartaLocuri.RezervaLoc(linie, coloana); 
-           // } 
-            //return true;
-            
-        //} return false;
-   // }
+        // Metoda comentată RezervaLocCoworking pare să fie o funcționalitate similară pentru locurile de coworking.
+        // Publicul acestei metode este pentru un loc de coworking, dar este momentan comentată.
+        // public bool RezervaLocCoworking(int idLoc, Angajat angajat, HartaLocuri hartaLocuri)
+        // {
+        //  if (RezervaLoc(idLoc, angajat))  // Reutilizează metoda RezervaLoc, care este probabil implementată în clasa părinte
+        // {
+        //   var loc = Locuri.FirstOrDefault(l => l.Id == idLoc); 
+        // if (loc != null) 
+        // {
+        // Se calculează linia și coloana pentru a marca locul ca rezervat în harta locațiilor
+        // int linie = (idLoc - 1) / hartaLocuri.GetNrColoane(); 
+        // int coloana = (idLoc - 1) % hartaLocuri.GetNrColoane(); 
+        // hartaLocuri.RezervaLoc(linie, coloana); 
+        // } 
+        //return true;  // Rezervarea a fost realizată cu succes
 
-    public void AfiseazaHartaLocuri(HartaLocuri hartaLocuri)
-    {
-        Console.WriteLine("=== Harta locurilor de parcare ===");
-        hartaLocuri.AfiseazaHarta();
+        //} return false; // Rezervarea nu a fost realizată
+        // }
+
+        // Metoda AfiseazaHartaLocuri afișează harta locurilor de parcare.
+        public void AfiseazaHartaLocuri(HartaLocuri hartaLocuri)
+        {
+            // Afișăm un mesaj introductiv pentru harta locurilor de parcare
+            Console.WriteLine("=== Harta locurilor de parcare ===");
+
+            // Afișăm efectiv harta locurilor folosind metoda din clasa HartaLocuri
+            hartaLocuri.AfiseazaHarta();
+        }
     }
 }
