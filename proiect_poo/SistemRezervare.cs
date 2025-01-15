@@ -4,27 +4,24 @@
 
     public class SistemRezervare
     {
-        // Lista care conține toate locurile disponibile pentru rezervare (de birou, parcare etc.)
         public List<Loc> Locuri { get; set; } = new List<Loc>();
 
         // Metoda AdaugaLoc adaugă un loc nou în lista de locuri disponibile.
         public void AdaugaLoc(Loc loc)
         {
             Locuri.Add(loc); // Adăugăm locul în lista Locuri
-            Console.WriteLine($"Locul {loc.Nume} a fost adaugat cu succes."); // Mesaj de confirmare
+            Console.WriteLine($"Locul {loc.Nume} a fost adaugat cu succes.");
         }
 
         // Metoda AfiseazaLocuri afișează toate locurile disponibile. 
         public void AfiseazaLocuri()
         {
-            // Dacă nu sunt locuri disponibile, se afișează un mesaj corespunzător.
             if (Locuri.Count == 0)
             {
                 Console.WriteLine("Nu exista locuri disponibile.");
             }
             else
             {
-                // Dacă există locuri disponibile, le afișăm pe toate
                 Console.WriteLine("Locuri disponibile:");
                 foreach (var loc in Locuri)
                 {
@@ -44,11 +41,11 @@
             {
                 // Dacă locul este disponibil, îl rezervăm și îl adăugăm în lista de rezervări a angajatului
                 loc.EsteRezervat = true;
-                angajat.AddRezervare(loc); // Adaugă locul la rezervările angajatului
-                return true; // Rezervarea a fost realizată cu succes
+                angajat.AddRezervare(loc); 
+                return true; 
             }
 
-            return false; // Locul nu este disponibil pentru rezervare
+            return false; 
         }
 
         // Metoda ModificaLoc permite modificarea unui loc, cum ar fi schimbarea statutului de rezervare și actualizarea numelui.

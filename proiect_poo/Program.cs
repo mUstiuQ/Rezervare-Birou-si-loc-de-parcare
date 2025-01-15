@@ -12,21 +12,17 @@ namespace proiect_poo
     {
         static void Main(string[] args)
         {
-            // Creare locuri
             var sistemRezervare = new SistemRezervare();
             sistemRezervare.AdaugaLoc(new Loc(1, "Birou", "Birou 1"));
             sistemRezervare.AdaugaLoc(new Loc(2, "Birou", "Birou 2"));
             sistemRezervare.AdaugaLoc(new Loc(3, "Parcare", "Parcare A1"));
             sistemRezervare.AdaugaLoc(new Loc(4, "Parcare", "Parcare A2"));
-
-            // Creare angajați
+            
             var angajat1 = new Angajat("Dragulescu Alex");
             var angajat2 = new Angajat("Dinis Maria");
 
-            // Creare manager și atribuirea echipei
             var manager = new Manager("Fodoka David", new List<Angajat> { angajat1, angajat2 });
 
-            // Creare administrator
             var administrator = new Administrator();
 
             var hartaParcare = new HartaLocuri(10, 5); // 10 locuri, 5 pe linie
@@ -40,7 +36,6 @@ namespace proiect_poo
             coworkingSpace.AdaugaLoc(new Loc(1, "Birou", "Birou 1"));
             coworkingSpace.AdaugaLoc(new Loc(2, "Birou", "Birou 2"));
 
-            // Menținerea unui meniu pentru utilizatori
             while (true)
             {
                 try

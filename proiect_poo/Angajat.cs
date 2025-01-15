@@ -1,12 +1,9 @@
 ﻿public class Angajat
 {
-    // Proprietatea Nume ține evidența numelui angajatului.
     public string Nume { get; set; }
 
-    // Lista Rezervari va conține toate locurile rezervate de angajat.
     public List<Loc> Rezervari { get; set; } = new List<Loc>();
 
-    // Constructorul clasei Angajat, care inițializează numele angajatului.
     public Angajat(string nume)
     {
         Nume = nume;

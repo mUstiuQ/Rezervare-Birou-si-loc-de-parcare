@@ -1,19 +1,13 @@
 ﻿namespace proiect_poo
-{
-
-
-
-    public class Administrator
+{    public class Administrator
     {
         // Metoda VizualizeazaToateLocurile permite administratorului să vizualizeze toate locurile din sistem.
         public void VizualizeazaToateLocurile(SistemRezervare sistem)
         {
             Console.WriteLine("=== Vizualizare toate locurile ===");
 
-            // Apelăm metoda AfiseazaLocuri din clasa SistemRezervare pentru a afișa locurile disponibile.
             sistem.AfiseazaLocuri();
 
-            // Așteptăm ca utilizatorul să apese o tastă pentru a continua.
             Console.WriteLine("Apasa orice tasta pentru a continua...");
             Console.ReadKey();
         }
@@ -31,16 +25,13 @@
                 loc.Nume = numeNou;
                 loc.EsteRezervat = esteRezervat;
 
-                // Afișăm un mesaj de succes
                 Console.WriteLine($"Locul {idLoc} a fost modificat.");
             }
             else
             {
-                // Dacă locul nu este găsit, afișăm un mesaj de eroare
                 Console.WriteLine("Locul nu a fost gasit.");
             }
 
-            // Așteptăm ca utilizatorul să apese o tastă pentru a continua.
             Console.WriteLine("Apasa orice tasta pentru a continua...");
             Console.ReadKey();
         }

@@ -7,12 +7,7 @@ namespace proiect_poo
 
     public class CoworkingSpace : SistemRezervare
     {
-        // Metoda permite rezervarea unui loc de coworking de tip "Birou" pentru un angajat.
-        // Parametri:
-        // - idLoc: ID-ul locului ce urmează să fie rezervat.
-        // - angajat: Angajatul care face rezervarea.
-        // - hartaLocuri: Obiect care reprezintă harta locurilor și starea lor.
-        // Returnează: true dacă rezervarea a fost realizată cu succes, altfel false.
+        
         public bool RezervaLocCoworking(int idLoc, Angajat angajat, HartaLocuri hartaLocuri)
         {
             // Caută un loc disponibil de tip "Birou" pe baza ID-ului.
@@ -26,12 +21,11 @@ namespace proiect_poo
                 int linie = (idLoc - 1) / hartaLocuri.GetNrColoane(); // Determină linia pe hartă.
                 int coloana = (idLoc - 1) % hartaLocuri.GetNrColoane(); // Determină coloana pe hartă.
                 hartaLocuri.RezervaLoc(linie, coloana); // Rezervă locul pe hartă.
-                return true; // Rezervarea a avut succes.
+                return true; 
             }
 
-            // Afișează un mesaj dacă locul nu este disponibil pentru rezervare.
             Console.WriteLine($"Locul {idLoc} nu este disponibil pentru rezervare.");
-            return false; // Rezervarea a eșuat.
+            return false; 
         }
 
         // Metoda afișează harta locurilor de coworking utilizând funcționalitatea oferită de HartaLocuri.
@@ -39,14 +33,10 @@ namespace proiect_poo
         public void AfiseazaHartaLocuri(HartaLocuri hartaLocuri)
         {
             Console.WriteLine("=== Harta locurilor de coworking ===");
-            hartaLocuri.AfiseazaHarta(); // Afișează harta locurilor.
+            hartaLocuri.AfiseazaHarta(); 
         }
 
         // Suprascrie metoda de rezervare pentru a utiliza logica de bază din SistemRezervare.
-        // Parametri:
-        // - idLoc: ID-ul locului de rezervat.
-        // - angajat: Angajatul care face rezervarea.
-        // Returnează: true dacă rezervarea a fost realizată cu succes, altfel false.
         public bool RezervaLocCoworking(int idLoc, Angajat angajat)
         {
             return RezervaLoc(idLoc, angajat); // Apelează metoda RezervaLoc din clasa de bază.

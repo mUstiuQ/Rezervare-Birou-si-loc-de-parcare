@@ -2,7 +2,6 @@
 {
     public static class Menu
     {
-        // Meniu pentru Parcare Publica
         public static void ParcarePublicaActions(ParcarePublica parcare, HartaLocuri hartaLocuri, Angajat angajat)
         {
             while (true)
@@ -46,7 +45,6 @@
             }
         }
 
-        // Meniu pentru Coworking Space
         public static void CoworkingSpaceActions(CoworkingSpace coworking, HartaLocuri hartaLocuri, Angajat angajat)
         {
             while (true)
@@ -90,7 +88,6 @@
             }
         }
 
-        // Meniu pentru Angajat
         public static void AngajatActions(SistemRezervare sistem, Angajat angajat)
         {
             while (true)
@@ -153,7 +150,6 @@
             Console.ReadKey();
         }
 
-        // Meniu pentru Manager
         public static void ManagerActions(Manager manager)
         {
             while (true)
@@ -225,7 +221,6 @@
             Console.ReadKey();
         }
 
-        // Meniu pentru Administrator
         public static void AdministratorActions(Administrator administrator, SistemRezervare sistem)
         {
             while (true)
