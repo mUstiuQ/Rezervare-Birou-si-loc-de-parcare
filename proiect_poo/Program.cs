@@ -1,67 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Channels;
-using proiect_poo;
 
-namespace proiect_poo
+namespace proiectPOO_lasttouches
 {
-
-
     class Program
     {
         static void Main(string[] args)
         {
+            // Inițializare sistem de rezervare și hărți
             var sistemRezervare = new SistemRezervare();
+            var hartaParcare = new HartaLocuri(20, 5); // 20 locuri, 5 pe linie
+            var hartaCoworking = new HartaLocuri(10, 5); // 10 locuri, 5 pe linie
+
+            // Creare locuri
             sistemRezervare.AdaugaLoc(new Loc(1, "Birou", "Birou 1"));
             sistemRezervare.AdaugaLoc(new Loc(2, "Birou", "Birou 2"));
-            sistemRezervare.AdaugaLoc(new Loc(3, "Parcare", "Parcare A1"));
-            sistemRezervare.AdaugaLoc(new Loc(4, "Parcare", "Parcare A2"));
-            
-            var angajat1 = new Angajat("Dragulescu Alex");
-            var angajat2 = new Angajat("Dinis Maria");
+            sistemRezervare.AdaugaLoc(new Loc(3, "Parcare", "Parcare A1", 10m));
+            sistemRezervare.AdaugaLoc(new Loc(4, "Parcare", "Parcare A2", 15m));
 
-            var manager = new Manager("Fodoka David", new List<Angajat> { angajat1, angajat2 });
-
+            // Creare utilizatori
+            var angajat1 = new Angajat("Alex");
+            var angajat2 = new Angajat("Maria");
+            var manager = new Manager("David", new List<Angajat> { angajat1, angajat2 });
             var administrator = new Administrator();
 
-            var hartaParcare = new HartaLocuri(10, 5); // 10 locuri, 5 pe linie
-            var hartaCoworking = new HartaLocuri(10, 5);
-
-            var parcarePublica = new ParcarePublica();
-            parcarePublica.AdaugaLoc(new Loc(3, "Parcare", "Parcare A1"));
-            parcarePublica.AdaugaLoc(new Loc(4, "Parcare", "Parcare A2"));
-
-            var coworkingSpace = new CoworkingSpace();
-            coworkingSpace.AdaugaLoc(new Loc(1, "Birou", "Birou 1"));
-            coworkingSpace.AdaugaLoc(new Loc(2, "Birou", "Birou 2"));
-
+            // Meniu principal
             while (true)
             {
+                Console.Clear();
+                Console.WriteLine("=== Meniu Principal ===");
+                Console.WriteLine("1. Angajat");
+                Console.WriteLine("2. Manager");
+                Console.WriteLine("3. Administrator");
+                Console.WriteLine("4. Parcare Publica");
+                Console.WriteLine("5. Coworking Space");
+                Console.WriteLine("6. Iesire");
+                Console.Write("Alegeti un rol (1-6): ");
+                var alegere = Console.ReadLine();
+
                 try
                 {
-                    Console.Clear();
-                    Console.WriteLine("=== Meniu Principal ===");
-                    Console.WriteLine("1. Angajat");
-                    Console.WriteLine("2. Manager");
-                    Console.WriteLine("3. Administrator");
-                    Console.WriteLine("4. Parcare publica");
-                    Console.WriteLine("5. Coworking Space");
-                    Console.WriteLine("6. Iesire");
-                    Console.Write("Alegeti un rol (1-6): ");
-                    var alegere = Console.ReadLine();
-
                     switch (alegere)
                     {
                         case "1":
-                            Menu.AngajatActions(sistemRezervare,
-                                angajat1); // aici se poate inlocuii angajat1 cu angajat2 
+                            Menu.AngajatActions(sistemRezervare, angajat1, hartaCoworking);
                             break;
                         case "2":
-                            Menu.ManagerActions(manager);
+                            Menu.ManagerActions(manager, hartaCoworking);
                             break;
                         case "3":
-                            Menu.AdministratorActions(administrator, sistemRezervare);
+                            Menu.AdministratorActions(administrator, sistemRezervare, hartaParcare);
                             break;
                         case "4":
                             Menu.ParcarePublicaActions(new ParcarePublica(), hartaParcare, angajat1);
@@ -80,13 +68,14 @@ namespace proiect_poo
                 catch (FormatException)
                 {
                     Console.WriteLine("Introdu un numar valid.");
+                    Console.ReadKey();
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine($"A aparut o eroare neasteptata: {ex.Message}");
+                    Console.ReadKey();
                 }
             }
-
         }
     }
 }
